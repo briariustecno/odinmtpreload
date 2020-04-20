@@ -1,0 +1,23 @@
+{
+  "name": "odin-mtp",
+  "version": "1.0.0",
+  "description": "node odin-app ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "heroku": "^7.35.1"
+  }
+}
