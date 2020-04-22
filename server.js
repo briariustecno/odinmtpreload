@@ -15,6 +15,8 @@ app.get('/', function(req, res){
 app.use(bodyParser.json())
 
 app.post('/form_search', function (req, res) {
+    path = 'C:/Odin';
+    dir = 'C:/Odin';
     // let date = archger(req);
     console.log(req.body);
     // res.send(JSON.stringify(req.body))
@@ -36,7 +38,7 @@ app.post('/form_search', function (req, res) {
             console.log("Diretório criado!")
         });
     }
-    fs.writeFile('C:/Odin', "teste",{enconding:'utf-8',flag: 'a'}, function(erro) {
+    fs.writeFile(path, "teste",{enconding:'utf-8',flag: 'a'}, function(erro) {
 
         if(erro) {
             console.log(erro)
