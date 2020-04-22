@@ -36,7 +36,7 @@ app.post('/form_search', function (req, res) {
             console.log("Diretório criado!")
         });
     }
-    fs.writeFile(path, "teste",{enconding:'utf-8',flag: 'a'}, function(erro) {
+    fs.writeFile('C:/Odin', "teste",{enconding:'utf-8',flag: 'a'}, function(erro) {
 
         if(erro) {
             console.log(erro)
