@@ -15,8 +15,6 @@ app.get('/', function(req, res){
 app.use(bodyParser.json())
 
 app.post('/form_search', function (req, res) {
-    path = 'C:/Odin';
-    dir = 'C:/Odin';
     // let date = archger(req);
     console.log(req.body);
     // res.send(JSON.stringify(req.body))
@@ -27,26 +25,6 @@ app.post('/form_search', function (req, res) {
     }).then((data) => {
         res.send(data);
     })
-    if (!fs.existsSync(dir)){
-        //Efetua a criação do diretório
-        fs.mkdir(dir, (err) => {
-            if (err) {
-                console.log("Deu ruim...");
-                return
-            }
-    
-            console.log("Diretório criado!")
-        });
-    }
-    fs.writeFile(path, "teste",{enconding:'utf-8',flag: 'a'}, function(erro) {
-
-        if(erro) {
-            console.log(erro)
-        } else {
-            console.log("Arquivo salvo!");
-            res(date);
-        }        
-    }); 
 })
 
 function archger(options) {
