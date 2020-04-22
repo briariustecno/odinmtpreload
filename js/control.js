@@ -1,5 +1,4 @@
 document.getElementById('btn-submit').addEventListener('click', redefineSubmit, false);
-document.getElementById('btn-excel').addEventListener('click', redefineExcel, false);
 
 function redefineUpload(evt) {
     evt.preventDefault();
