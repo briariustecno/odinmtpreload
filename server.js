@@ -16,7 +16,6 @@ app.use(bodyParser.json())
 
 app.post('/form_search', function (req, res) {
     // let date = archger(req);
-    console.log(req.body);
     // res.send(JSON.stringify(req.body))
 
     new Promise((res, rej) => {
@@ -26,6 +25,34 @@ app.post('/form_search', function (req, res) {
         res.send(data);
     })
 })
+
+app.post('/download', ((req, res) => {
+    var name = req.body.adress;
+    console.log(name);
+    let hpath =  SetNamePath(name);
+    let path = 'C:\\Odin\\' + hpath;
+    if (!fs.existsSync(dir)){
+        //Efetua a criação do diretório
+        fs.mkdir(dir, (err) => {
+            if (err) {
+                console.log("Deu ruim...");
+                return
+            }
+    
+            console.log("Diretório criado!")
+        });
+    }
+    console.log(req.body.content)
+    fs.writeFile(path, req.body.content,{enconding:'utf-8',flag: 'a'}, function(erro) {
+        
+        if(erro) {
+            console.log(erro)
+        } else {
+            console.log("Arquivo salvo!");
+            res.send('Arquivo Salvo!');
+        }        
+    }); 
+}))
 
 function archger(options) {
     var line = 'idpredio' + ';' + 'andar'+ ';' + 'apartamento' + ';' + 'casa;\r\n';
@@ -40,11 +67,19 @@ function archger(options) {
             line += id + ";" + ";" + apt + ";;\r\n";
         }
     }
-    var status = {
-        data: line,
-        status: 'acabou'
+    return line;
+}
+
+function SetNamePath ( vpath ) {
+    for (i=0;i<=vpath.length;i++) {
+        vpath = vpath.replace(' ', '_')
+        vpath = vpath.replace('.', '')
+        vpath = vpath.replace(',', '')
+        vpath = vpath.replace('ã', 'a')
+        vpath = vpath.replace('Ã', 'A')
+        console.log(vpath);
     }
-    return status;
+    return vpath + '.txt';
 }
 
 server.listen(port, function () {
