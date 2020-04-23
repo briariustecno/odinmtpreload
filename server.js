@@ -15,9 +15,6 @@ app.get('/', function(req, res){
 app.use(bodyParser.json())
 
 app.post('/form_search', function (req, res) {
-    // let date = archger(req);
-    // res.send(JSON.stringify(req.body))
-
     new Promise((res, rej) => {
         var result = archger(req.body);
         res(result)
@@ -28,35 +25,18 @@ app.post('/form_search', function (req, res) {
 
 app.post('/download', ((req, res) => {
     var name = req.body.adress;
-    console.log(name);
-    let hpath =  SetNamePath(name);
-    console.log(hpath)
-    let path = "C:/Odin/"+ hpath;
-    console.log(path)
-    if (!fs.existsSync(path)){
-        //Efetua a criação do diretório
-        fs.mkdir(dir, (err) => {
-            if (err) {
-                console.log("Deu ruim...");
-            }
-    
-            console.log("Diretório criado!")
-        });
+    console.log(req.body);
+    const path = SetNamePath(name);
+    console.log(path);
+    const rtn = {
+        path: path,
+        content: JSON.stringify(req.body.content)
     }
-    console.log(req.body.content)
-    fs.writeFile(path, req.body.content,{enconding:'utf-8',flag: 'a'}, function(erro) {
-        
-        if(erro) {
-            console.log(erro)
-        } else {
-            console.log("Arquivo salvo!");
-            res.send('Arquivo Salvo!');
-        }        
-    }); 
+    res.send(rtn);
 }))
 
 function archger(options) {
-    var line = 'idpredio' + ';' + 'andar'+ ';' + 'apartamento' + ';' + 'casa;\r\n';
+    var line = 'idpredio;andar;apartamento;casa;\r\n';
     const id = options.id;
     let floors = parseInt(options.andares);
     let apto = parseInt(options.aptos);

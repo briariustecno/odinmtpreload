@@ -27,7 +27,7 @@ function redefineSubmit(evt) {
 
 function redefineDownload (evt) {
     evt.preventDefault();
-    download();
+    setDownload();
 }
 
 function checkForm (sdata) {
@@ -46,18 +46,32 @@ function checkForm (sdata) {
     xhttp.send(sdata);
 }
 
-function download () {
+function setDownload () {
     // console.log(sdata);
     var xhttp = new window.XMLHttpRequest();
     xhttp.open('POST', '/download', true); 
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.onreadystatechange = function() {
         if ( xhttp.readyState == 4 && xhttp.status == 200 ) {
-            var respost = xhttp.responseText;
+            const respost = xhttp.responseText;
             console.log('Download!!');
-            global_data = respost;
+            global_data = JSON.parse(respost);
+            download(JSON.parse(global_data.content), global_data.path)
+            console.log("Content: " + global_data.content);
+            console.log("Path: " + global_data.path);
             document.getElementById('btn-download').style.display = 'none';
        }
     }
     xhttp.send(JSON.stringify(obj));
+}
+
+function download(content, filename, contentType){
+    if(!contentType){
+        contentType = 'text/plain;charset=utf-8';
+    }
+    var a = document.createElement('a');
+    var blob = new Blob([content], {'type':contentType});
+    a.href = window.URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
 }
