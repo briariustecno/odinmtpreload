@@ -58,6 +58,8 @@ function SetNamePath ( vpath ) {
         vpath = vpath.replace(',', '')
         vpath = vpath.replace('ã', 'a')
         vpath = vpath.replace('Ã', 'A')
+        vpath = vpath.replace(')', '')
+        vpath = vpath.replace('(', '')
         console.log(vpath);
     }
     return vpath + '.txt';
