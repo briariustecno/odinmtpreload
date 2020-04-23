@@ -30,7 +30,7 @@ app.post('/download', ((req, res) => {
     var name = req.body.adress;
     console.log(name);
     let hpath =  SetNamePath(name);
-    let path = 'C:\\Odin\\' + hpath;
+    let path = '${__dirname}/Odin' + hpath;
     if (!fs.existsSync(dir)){
         //Efetua a criação do diretório
         fs.mkdir(dir, (err) => {
