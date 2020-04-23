@@ -31,7 +31,7 @@ app.post('/download', ((req, res) => {
     console.log(name);
     let hpath =  SetNamePath(name);
     let path = '${__dirname}/Odin' + hpath;
-    if (!fs.existsSync(dir)){
+    if (!fs.existsSync(path)){
         //Efetua a criação do diretório
         fs.mkdir(dir, (err) => {
             if (err) {
