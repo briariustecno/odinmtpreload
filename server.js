@@ -16,7 +16,8 @@ app.use(bodyParser.json())
 
 app.post('/form_search', function (req, res) {
     new Promise((res, rej) => {
-        var result = archger(req.body);
+        const result = archger(req.body);
+        console.log(result);
         res(result)
     }).then((data) => {
         res.send(data);
@@ -34,20 +35,44 @@ app.post('/download', ((req, res) => {
     }
     res.send(rtn);
 }))
-
-function archger(options) {
-    var line = 'idpredio;andar;apartamento;casa;\r\n';
-    const id = options.id;
-    let floors = parseInt(options.andares);
-    let apto = parseInt(options.aptos);
-    for (i=0;i<floors;i++) {
-        var flo = i+1;
-        for (j=1;j<=apto;j++) {
-            let fib = flo * 100;
-            let apt = j + fib;
-            line += id + ";" + ";" + apt + ";;\r\n";
-        }
+// req.body.id, req.body.andares, req.body.aptos, req.body.casas)
+function archger(presets) {
+    console.log(presets)
+    if (presets.blocks == "") {
+        var blocks = 1;
     }
+    var line = 'idpredio;andar;apartamento;casa;\r\n';
+    let id = parseInt(presets.id);
+    let floors = parseInt(presets.andares);
+    if (presets.aptos != "") {
+        var apto = parseInt(presets.aptos);
+    } else {
+        var apto = parseInt(presets.casas);
+    }
+    
+    for (b=0;b<parseInt(presets.blocks);b++) {   
+        var apt = 0;
+        var temp = 0;     
+        for (i=0;i<floors;i++) {
+            var flo = i+1;
+            for (j=1;j<=apto;j++) {
+                if(presets.count == true) {
+                    let fib = flo * 100;
+                    var apt = j + fib;
+                } else {
+                    apt = j + temp;
+                }
+                if (presets.aptos != "") {
+                    line += id.toString() + ";" + ";" + apt + ";;\r\n";
+                } else {
+                    line += id.toString() + ";" + ";" + ";" + apt + ";\r\n";
+                }
+            }
+            temp = apt;
+        }
+        id++;
+    } 
+    
     return line;
 }
 
@@ -67,4 +92,4 @@ function SetNamePath ( vpath ) {
 
 server.listen(port, function () {
     console.log('Servidor rodando na porta %d', port);
-  });
+});

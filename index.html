@@ -4,11 +4,12 @@
         <title>ODIN - Assistente Projetos</title>
 
         <link rel="stylesheet" href="css/theme-basic.css">
+        <script src="https://kit.fontawesome.com/2f14d5b2ad.js"></script>
     </head>
     <body>
         <div class="container">  
             <form id="contact" action="" method="post">
-              <h3>ODIN</h3>
+              <h3>ODIN</h3> 
               <h4>Ordem e Destino de Informações Numeradas</h4>
               <fieldset>
                 <!--required-->
@@ -24,21 +25,27 @@
               </fieldset>
               <fieldset>
                 <!--required-->
-                <input id="fourth" placeholder="Quantidade Andares" type="number" tabindex="4">
+                <input id="blocks" placeholder="Quantidade Blocos" type="number" tabindex="4" name="blocks">
               </fieldset>
               <fieldset>
                 <!--required-->
-                <input id="fifth" placeholder="Quantidade Aptos" type="number" tabindex="5" >
+                <input id="fourth" placeholder="Quantidade Andares" type="number" tabindex="5">
               </fieldset>
               <fieldset>
-                <input id="sixth" placeholder="Quantidade Casas" type="number" tabindex="6">
+                <!--required-->
+                <input id="fifth" placeholder="Quantidade Aptos" type="number" tabindex="6" >
               </fieldset>
               <fieldset>
-                <textarea id="seventh" placeholder="Reportar Erro" tabindex="7"></textarea>
+                <input id="sixth" placeholder="Quantidade Casas" type="number" tabindex="7">
               </fieldset>
-              <fieldset style="text-align: center;">
+              <fieldset>
+                <textarea id="seventh" placeholder="Reportar Erro" tabindex="8"></textarea>
+              </fieldset>
+              <fieldset class="config">
                 <input type="checkbox" id="count_interval">
                 <label> Intervalos de Contagem. </label>
+                <input type="checkbox" id="blocks_check" onclick="showMe('blocks')">
+                <label> Múltiplos Blocos. </label>
               </fieldset>
               <fieldset>
                 <button name="submit" type="submit" id="btn-submit" data-submit="...Configurando!">Gerar Arquivo</button>
@@ -46,7 +53,7 @@
               <fieldset>
                 <button name="download" type="download" id="btn-download">Download</button>
               </fieldset>
-              <p class="copyright">Designed by q <a href="https://www.facebook.com/briariustecno" target="_blank" title="briariustecno">Samuel Benício</a></p>
+              <p class="copyright">Designed by <a href="https://www.facebook.com/briariustecno" target="_blank" title="briariustecno">Samuel Benício</a></p>
             </form>
           </div>
 

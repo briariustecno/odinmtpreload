@@ -16,7 +16,8 @@ function redefineSubmit(evt) {
         aptos : document.getElementById('fifth').value,
         casas : document.getElementById('sixth').value,
         obs : document.getElementById('seventh').value,
-        count: document.getElementById('count_interval').value
+        count: document.getElementById('count_interval').checked,
+        blocks: document.getElementById('blocks').value
     }
 
     console.log(data.count)
@@ -74,4 +75,12 @@ function download(content, filename, contentType){
     a.href = window.URL.createObjectURL(blob);
     a.download = filename;
     a.click();
+}
+
+function showMe (box) {
+    if (document.getElementById(box).style.display == 'block') {
+        document.getElementById(box).style.display = 'none';
+    } else {
+        document.getElementById(box).style.display = 'block';
+    }
 }
