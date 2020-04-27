@@ -39,7 +39,7 @@ app.post('/download', ((req, res) => {
 function archger(presets) {
     console.log(presets)
     if (presets.blocks == "") {
-        var blocks = 1;
+        presets.blocks = 1;
     }
     var line = 'idpredio;andar;apartamento;casa;\r\n';
     let id = parseInt(presets.id);
