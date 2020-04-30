@@ -17,7 +17,8 @@ function redefineSubmit(evt) {
         casas : document.getElementById('sixth').value,
         obs : document.getElementById('seventh').value,
         count: document.getElementById('count_interval').checked,
-        blocks: document.getElementById('blocks').value
+        blocks: document.getElementById('blocks').value,
+        countAptos: document.getElementById('firstApto').value
     }
 
     console.log(data.count)

@@ -51,16 +51,20 @@ function archger(presets) {
     }
     
     for (b=0;b<parseInt(presets.blocks);b++) {   
-        var apt = 0;
-        var temp = 0;     
+        console.log(presets);
+        if (presets.countAptos == "") {
+            var temp = 0;
+        } else {
+            var temp = parseInt(presets.countAptos);
+        }  
+        apt = 0; fib = 0;
         for (i=0;i<floors;i++) {
-            var flo = i+1;
             for (j=1;j<=apto;j++) {
                 if(presets.count == true) {
-                    let fib = flo * 100;
-                    var apt = j + fib;
+                    let fib = i * 100;
+                    apt = fib + temp;
                 } else {
-                    apt = j + temp;
+                    apt = temp++;
                 }
                 if (presets.aptos != "") {
                     line += id.toString() + ";" + ";" + apt + ";;\r\n";
@@ -68,7 +72,6 @@ function archger(presets) {
                     line += id.toString() + ";" + ";" + ";" + apt + ";\r\n";
                 }
             }
-            temp = apt;
         }
         id++;
     } 
